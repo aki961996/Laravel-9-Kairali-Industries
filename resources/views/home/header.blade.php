@@ -32,10 +32,10 @@
 
 
                     <li class="nav-item">
-                        <a class="btn btn-primary" href="contact.html" id="logincss">Login</a>
+                        <a class="btn btn-primary" href="{{ route('login') }}" id="logincss">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-success" href="contact.html" id="registercss">Register</a>
+                        <a class="btn btn-success" href="{{ route('register') }}" id="registercss">Register</a>
                     </li>
 
                     <form class="form-inline">
