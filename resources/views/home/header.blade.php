@@ -30,13 +30,23 @@
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
 
+                    @if (Route::has('login'))
 
+                    @auth
+                    <x-app-layout>
+
+                    </x-app-layout>
+                    @else
                     <li class="nav-item">
                         <a class="btn btn-primary" href="{{ route('login') }}" id="logincss">Login</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="btn btn-success" href="{{ route('register') }}" id="registercss">Register</a>
                     </li>
+
+                    @endauth
+                    @endif
 
                     <form class="form-inline">
                         <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
