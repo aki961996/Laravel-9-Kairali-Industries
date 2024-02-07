@@ -10,8 +10,8 @@
     <div class="container-scroller">
         @include('admin.sidebar')
         @include('admin.header')
-        {{-- @include('admin.body') --}}
-        @yield('content')
+        @include('admin.body')
+        {{-- @yield('content') --}}
         @include('admin.script')
 
 
