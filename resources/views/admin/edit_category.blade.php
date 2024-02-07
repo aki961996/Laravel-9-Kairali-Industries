@@ -57,17 +57,25 @@
                 </div>
                 @endif
 
+
+                <div class="col-sm-12" style="text-align: right">
+                    <a href="{{url('view_category')}}" class="btn btn-primary">Back</a>
+                </div>
+
                 {{-- category form to save db --}}
                 <div class="div_center">
-                    <h2 class="h2_font">Add Category</h2>
-                    <form action="{{route('add_category')}}" method="post">
+                    <h2 class="h2_font">Edit Category</h2>
+                    <form action="{{route('update_category')}}" method="post">
                         @csrf
+                        <input type="hidden" name="id" value="{{$edit_category->id}}" class="form-control" id=""
+                            placeholder="">
                         <div class="col-sm-auto d-flex flex-column justify-content-center align-items-center">
                             <div class="d-flex flex-column">
                                 <div class="row mx-0">
-                                    <input class="input_color" type="text" name="category"
-                                        placeholder="Write Category Name" />
-                                    <input type="submit" class="btn btn-primary" name="submit" value="Add Category" />
+                                    <input class="input_color"
+                                        value="{{old('category', $edit_category->category_name) }}" type="text"
+                                        name="category" placeholder="Write Category Name" />
+                                    <input type="submit" class="btn btn-primary" name="submit" value="Edit Category" />
                                 </div>
                                 <div class="error_style" style="color: red">{{$errors->first('category')}}</div>
                             </div>
@@ -77,41 +85,7 @@
                     </form>
                 </div>
                 {{-- category form end to save db --}}
-
-                {{-- need to show the category data from db --}}
-                <table class="center">
-                    <tr>
-                        <td>Catagory name</td>
-                        <td>Action</td>
-                    </tr>
-                    @foreach ($category_data as $category)
-                    <tr>
-                        <td>{{$category->category_name}}</td>
-                        <td>
-                            <a class="btn btn-primary" href="{{route('edit_category',encrypt($category->id))}}">Edit</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger"
-                                href="{{route('delete_category',encrypt($category->id))}}">Delete</a>
-                        </td>
-                    </tr>
-
-                    @endforeach
-
-                </table>
-                {{-- end need to show the category data from db --}}
-
-
-                {{-- pagination --}}
-                <div style="padding: 10px; float:right;">
-                    {!!
-                    $category_data->appends(\Illuminate\Support\Facades\Request::except('page'))->links()
-                    !!}
-                </div>
-
-
             </div>
-
         </div>
 
 
