@@ -11,8 +11,7 @@ class AdminController extends Controller
 {
     public function view_category()
     {
-        $data = $data = Category::paginate(3);
-
+        $data = Category::orderBy('id', 'asc')->paginate(10);
         return view('admin.category', ['category_data' => $data]);
     }
 

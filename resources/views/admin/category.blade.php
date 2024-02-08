@@ -95,30 +95,19 @@
                                 href="{{route('delete_category',encrypt($category->id))}}">Delete</a>
                         </td>
                     </tr>
-
                     @endforeach
-
                 </table>
                 {{-- end need to show the category data from db --}}
-
-
                 {{-- pagination --}}
                 <div style="padding: 10px; float:right;">
                     {!!
                     $category_data->appends(\Illuminate\Support\Facades\Request::except('page'))->links()
                     !!}
                 </div>
-
-
             </div>
-
         </div>
 
-
-
-
         @include('admin.script')
-
 
 </body>
 
