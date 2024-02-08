@@ -13,8 +13,8 @@
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                        <span>Gold Member</span>
+                        <h5 class="mb-0 font-weight-normal">{{Auth::user()->name}}</h5>
+                        <span>{{Auth::user()->created_at}}</span>
                     </div>
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -77,9 +77,9 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="">Add Products</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('view_product')}}">Add Products</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="">Show Products</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('show_product')}}">Show Products</a></li>
                 </ul>
             </div>
         </li>
@@ -95,6 +95,6 @@
             </a>
         </li>
         {{-- This is category tab end --}}
-     
+
     </ul>
 </nav>

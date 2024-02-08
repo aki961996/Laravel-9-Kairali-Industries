@@ -46,7 +46,6 @@
         @include('admin.sidebar')
         @include('admin.header')
         {{-- category body --}}
-
         <div class="main-panel">
             <div class="content-wrapper">
 
