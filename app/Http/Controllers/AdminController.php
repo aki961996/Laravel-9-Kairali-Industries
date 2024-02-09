@@ -96,7 +96,7 @@ class AdminController extends Controller
         $products->price = $request->price;
         $products->quantity = $request->quantity;
         $products->discount_price = $request->title;
-        
+
         //image start
         $image = $request->image;
         $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -120,6 +120,7 @@ class AdminController extends Controller
         // dd($request->id);
         $id = decrypt($id);
         $data = Product::find($id);
+
         return view('admin.edit_product', ['product' => $data]);
     }
 }
