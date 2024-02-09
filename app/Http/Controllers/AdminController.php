@@ -96,14 +96,13 @@ class AdminController extends Controller
         $products->price = $request->price;
         $products->quantity = $request->quantity;
         $products->discount_price = $request->title;
-
+        
         //image start
         $image = $request->image;
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $request->image->move('product', $imageName);
         $products->image = $imageName;
         //imageend
-
 
         $products->save();
         return redirect()->back()->with('message', 'Product Addedd Successfully');
@@ -119,7 +118,6 @@ class AdminController extends Controller
     public function edit_product(Request $request, $id)
     {
         // dd($request->id);
-
         $id = decrypt($id);
         $data = Product::find($id);
         return view('admin.edit_product', ['product' => $data]);
