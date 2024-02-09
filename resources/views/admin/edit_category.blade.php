@@ -75,7 +75,8 @@
                                     <input class="input_color"
                                         value="{{old('category', $edit_category->category_name) }}" type="text"
                                         name="category" placeholder="Write Category Name" />
-                                    <input type="submit" class="btn btn-primary" name="submit" value="Edit Category" />
+                                    <input type="submit" class="btn btn-primary" name="submit"
+                                        value="Update Category" />
                                 </div>
                                 <div class="error_style" style="color: red">{{$errors->first('category')}}</div>
                             </div>

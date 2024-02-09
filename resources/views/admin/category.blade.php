@@ -19,7 +19,25 @@
 
         .input_color {
             color: black;
+
+            /* width: 200px;
+
+            padding: 10px !important;
+
+            border: 1px solid #ccc;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            transition: border-color 0.3s; */
+
+
         }
+
+        /* .input_color:focus {
+            border-color: #007bff;
+        } */
 
         .center {
             margin: auto;

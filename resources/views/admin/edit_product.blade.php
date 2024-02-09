@@ -46,10 +46,14 @@
                 </div>
                 @endif
 
-                <form action="" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="div_center">
-                        <h2 class="h2_font">Update Products</h2>
+                <div class="col-sm-12" style="text-align: right">
+                    <a href="{{route('show_product')}}" class="btn btn-primary">Back</a>
+                </div>
+
+                <div class="div_center">
+                    <h2 class="h2_font">Edit Products</h2>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="div_design">
                             <label>Product Title :</label>
                             <input type="text" class="text_color" value="{{old('title', $product->title) }}"
@@ -71,16 +75,15 @@
                         </div>
                         <div class="div_design">
                             <label>Product discount price:</label>
-                            <input type="number" class="text_color"
-                                value="{{old('description', $product->description) }}" name="discount_price"
+                            <input type="text" class="text_color"
+                                value="{{old('discount_price', $product->discount_price) }}" name="discount_price"
                                 placeholder="Write A discount price">
                             <div class="error_style" style="color: red">{{$errors->first('discount_price')}}</div>
                         </div>
                         <div class="div_design">
                             <label>Product quantity:</label>
-                            <input type="number" class="text_color"
-                                value="{{old('description', $product->description) }}" min="0" name="quantity"
-                                placeholder="Write A quantity">
+                            <input type="number" class="text_color" value="{{old('description', $product->quantity) }}"
+                                min="0" name="quantity" placeholder="Write A quantity">
                             <div class="error_style" style="color: red">{{$errors->first('quantity')}}</div>
                         </div>
                         <div class="div_design">
@@ -99,12 +102,11 @@
                             <div class="error_style" style="color: red">{{$errors->first('image')}}</div>
                         </div>
                         <div class="div_design">
-                            <input type="submit" value="Add Products" class="btn btn-primary">
-
+                            <input type="submit" value="Update Products" class="btn btn-primary">
                         </div>
 
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
 
 

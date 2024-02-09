@@ -13,6 +13,7 @@ class AdminController extends Controller
     public function view_category()
     {
         $data = Category::orderBy('id', 'asc')->paginate(10);
+
         return view('admin.category', ['category_data' => $data]);
     }
 
@@ -110,8 +111,8 @@ class AdminController extends Controller
 
     public function  show_product()
     {
-
-        $product_data = Product::all();
+        //$product_data = Product::all();
+        $product_data = Product::orderBy('id', 'asc')->paginate(5);
         return view('admin.show_product', ['products' =>  $product_data]);
     }
 
@@ -120,7 +121,6 @@ class AdminController extends Controller
         // dd($request->id);
         $id = decrypt($id);
         $data = Product::find($id);
-
         return view('admin.edit_product', ['product' => $data]);
     }
 }
