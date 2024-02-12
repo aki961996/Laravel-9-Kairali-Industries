@@ -21,12 +21,13 @@
 
         .img_size {
             width: 100px;
-            height: 100px;
+            height: 90px;
             margin: 5px;
         }
 
         .th_color {
-            background-color: skyblue;
+            /* background-color: skyblue; */
+            background-color: #074281;
         }
 
         .th_des {
@@ -46,6 +47,22 @@
         @include('admin.header')
         <div class="main-panel">
             <div class="content-wrapper">
+
+                {{-- This is flash msg start --}}
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                    {{session()->get('message')}}
+                </div>
+                @endif
+                {{-- flashing end --}}
+
+                {{-- back redirting --}}
+                <div class="col-sm-12" style="text-align: right">
+                    <a href="{{route('view_product')}}" class="btn btn-primary">Back</a>
+                </div>
+                {{-- end back redirting --}}
+
                 <h2 class="font_size">All Products</h2>
                 <div class="scrolled_up">
                     <table class="center">
@@ -71,14 +88,16 @@
                             <td>{{$product->price}}</td>
                             <td>{{$product->discount_price}}</td>
                             <td>
-                                <img class="img_size" src="{{asset('product/' . $product->image)}}">
+                                <img class="img_size" src="{{asset('storage/product/' . $product->image)}}">
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="">Delete</a>
+                                <a class="btn btn-danger" onclick="return confirm('Are you sure to Delete this?')"
+                                    href="{{route('delete_product', encrypt($product->id))}}">Delete</a>
                             </td>
                             <td>
 
-                                <a class="btn btn-info" href="{{route('edit_product',encrypt($product->id))}}">Edit</a>
+                                <a class="btn btn-info"
+                                    href="{{route('update_product',encrypt($product->id))}}">Edit</a>
                             </td>
                         </tr>
                         @endforeach

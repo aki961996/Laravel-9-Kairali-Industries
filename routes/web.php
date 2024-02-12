@@ -33,24 +33,31 @@ Route::middleware([
 
 Route::get('/redirect', [HomeController::class, 'redirect']);
 
-//category view
+//category view  //index show
 Route::get('/view_category', [AdminController::class, 'view_category'])->name('view_category');
 //category_add
 Route::post('/add_category', [AdminController::class, 'add_category'])->name('add_category');
 //edit_category
-Route::get('/edit_category{id}', [AdminController::class, 'edit_category'])->name('edit_category');
+// Route::get('/edit_category/{id}', [AdminController::class, 'edit_category'])->name('edit_category');
+Route::get('/edit_category/{id}', [AdminController::class, 'edit_category'])->name('edit_category');
 //delete_category
-Route::get('/delete_category{id}', [AdminController::class, 'delete_category'])->name('delete_category');
+Route::get('/delete_category/{id}', [AdminController::class, 'delete_category'])->name('delete_category');
 //update_category
 Route::post('/update_category', [AdminController::class, 'update_category'])->name('update_category');
 
-// products apis
+// products apis  showindex
 Route::get('/view_product', [AdminController::class, 'view_product'])->name('view_product');
 
 Route::post('/add_product', [AdminController::class, 'add_product'])->name('add_product');
 
-//show_product
+//show_product  //full product listing
 Route::get('/show_product', [AdminController::class, 'show_product'])->name('show_product');
 
 //edit_product
-Route::get('/edit_product{id}', [AdminController::class, 'edit_product'])->name('edit_product');
+Route::get('/update_product/{id}', [AdminController::class, 'update_product'])->name('update_product');
+
+//delete_product 
+Route::get('/delete_product/{id}', [AdminController::class, 'delete_product'])->name('delete_product');
+
+//edit then update
+Route::post('/update_product_confirm/{id}', [AdminController::class, 'update_product_confirm'])->name('update_product_confirm');

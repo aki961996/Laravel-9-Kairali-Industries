@@ -45,11 +45,13 @@
                     {{session()->get('message')}}
                 </div>
                 @endif
-                
+
                 <form action="{{route('add_product')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="div_center">
                         <h2 class="h2_font">Add Products</h2>
+                        {{-- <h5>Please make sure to fill in the required fields and submit this form to complete your
+                            order.</h5> --}}
                         <div class="div_design">
                             <label>Product Title :</label>
                             <input type="text" class="text_color" name="title" placeholder="Write A Title">
@@ -80,13 +82,13 @@
                         </div>
                         <div class="div_design">
                             <label>Product Category:</label>
-                            <select class="text_color" name="category">
+                            <select class="text_color" name="catagory">
                                 <option value="" selected="">Add A Category</option>
                                 @foreach($categorys as $catagory)
                                 <option value="{{$catagory->category_name}}">{{$catagory->category_name}}</option>
                                 @endforeach
-                                <div class="error_style" style="color: red">{{$errors->first('category')}}</div>
                             </select>
+                            <div class="error_style" style="color: red">{{$errors->first('category')}}</div>
                         </div>
                         <div class="div_design">
                             <label>Product Image:</label>

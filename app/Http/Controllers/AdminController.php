@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
@@ -43,8 +45,17 @@ class AdminController extends Controller
 
     public function edit_category($id)
     {
-        $id = decrypt($id);
-        $data = Category::find($id);
+        // $id = decrypt($id);
+        // $data = Category::find($id);
+        // return view('admin.edit_category', ['edit_category' => $data]);
+        $decryptedId = decrypt($id);
+
+        $data = Category::find($decryptedId);
+
+        if (!$data) {
+            // Handle the case where the category with the decrypted ID was not found.
+            abort(404); // or redirect, or show an error message, etc.
+        }
         return view('admin.edit_category', ['edit_category' => $data]);
     }
 
@@ -93,17 +104,26 @@ class AdminController extends Controller
 
         $products->title = $request->title;
         $products->description = $request->description;
-        $products->catagory = $request->category;
+        $products->catagory = $request->catagory;
         $products->price = $request->price;
         $products->quantity = $request->quantity;
-        $products->discount_price = $request->title;
+        $products->discount_price = $request->discount_price;
 
         //image start
-        $image = $request->image;
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $request->image->move('product', $imageName);
-        $products->image = $imageName;
+        // $image = $request->image;
+        // $imageName = time() . '.' . $image->getClientOriginalExtension();
+        // $request->image->move('product', $imageName);
+        // $products->image = $imageName;
         //imageend
+
+        // this new method
+        if ($request->hasFile('image')) {
+            $extension = request('image')->extension();
+            $fileName = 'img' . time() . '.' . $extension;
+            request('image')->storeAs('product', $fileName);
+            $products->image = $fileName;
+        }
+        // end method
 
         $products->save();
         return redirect()->back()->with('message', 'Product Addedd Successfully');
@@ -116,11 +136,66 @@ class AdminController extends Controller
         return view('admin.show_product', ['products' =>  $product_data]);
     }
 
-    public function edit_product(Request $request, $id)
+    //updateproduct metode edit also done
+    public function update_product(Request $request, $id)
     {
-        // dd($request->id);
-        $id = decrypt($id);
-        $data = Product::find($id);
-        return view('admin.edit_product', ['product' => $data]);
+        $decryptedId = decrypt($id);
+        $product = Product::find($decryptedId);
+        // catagory table data need there
+        $catagory = Category::all();
+        return view('admin.update_product', ['product' => $product, 'categories' => $catagory]);
+    }
+
+    //delete product delete_product
+    public function delete_product($id)
+    {
+
+        $decryptedId = decrypt($id);
+        $product = Product::find($decryptedId);
+        $product->delete();
+        return redirect()->back()->with('message', 'Product Deleted Successfully');
+    }
+
+    public function update_product_confirm(Request $request, $id)
+    {
+
+        $request->validate([
+            'image' => 'required',
+        ]);
+
+
+
+        $decryptedId = decrypt($id);
+        $product = Product::find($decryptedId);
+
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->catagory = $request->catagory;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->discount_price = $request->discount_price;
+
+        //image start
+        // $image = $request->image;
+        // $imageName = time() . '.' . $image->getClientOriginalExtension();
+        // $request->image->move('product', $imageName);
+        // $product->image = $imageName;
+        //imageend
+
+        // this is new methode
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Delete old image
+            Storage::delete('product/' . $product->image);
+
+            $extension = request('image')->extension();
+            $fileName = 'img' . time() . '.' . $extension;
+            request('image')->storeAs('product', $fileName);
+            $product->image = $fileName;
+        }
+        //end 
+
+        $product->save();
+
+        return redirect()->route('show_product')->with('message', 'Product Upadted Successfully');
     }
 }

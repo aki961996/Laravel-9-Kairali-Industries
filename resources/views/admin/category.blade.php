@@ -104,9 +104,14 @@
                     @foreach ($category_data as $category)
                     <tr>
                         <td>{{$category->category_name}}</td>
-                        <td>
+                        {{-- <td>
                             <a class="btn btn-primary" href="{{route('edit_category',encrypt($category->id))}}">Edit</a>
+                        </td> --}}
+                        <td>
+                            <a class="btn btn-primary"
+                                href="{{ route('edit_category', encrypt($category->id)) }}">Edit</a>
                         </td>
+
                         <td>
                             <a class="btn btn-danger"
                                 href="{{route('delete_category',encrypt($category->id))}}">Delete</a>
