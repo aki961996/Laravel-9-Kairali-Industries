@@ -53,6 +53,12 @@
             margin-bottom: 7px;
 
         }
+
+        .h5_css i {
+            color: white;
+            margin-right: 7px;
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -151,9 +157,12 @@
                         <div class="div_design">
 
                             <label>Show Product Image:</label>
-                            <img class="img_css" src="{{ asset('storage/product/' . $product->image) }}" alt="productImg" />
-                            <h5 class="h5_css">Info:-This is your added Image and in case if you want to change this
-                                Image
+                            <img class="img_css" src="{{ asset('storage/product/' . $product->image) }}"
+                                alt="productImg" />
+
+                            <h5 class="h5_css"><i class="mdi mdi-information"></i>This is your added Image and in case
+                                if you want to change this
+                                Image,
                                 upload
                                 New Image.!</h5>
 
@@ -165,7 +174,7 @@
                         <div class="div_design">
                             <label>Upload New Product Image:</label>
                             <input type="file" name="image" placeholder="" />
-                            <div class="error_style" style="color: red">{{$errors->first('image')}}</div>
+                            {{-- <div class="error_style" style="color: red">{{$errors->first('image')}}</div> --}}
                         </div>
                         {{-- end new image --}}
                         <div class="div_design">

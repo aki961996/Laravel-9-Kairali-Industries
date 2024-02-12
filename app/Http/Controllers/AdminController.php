@@ -115,7 +115,6 @@ class AdminController extends Controller
         // $request->image->move('product', $imageName);
         // $products->image = $imageName;
         //imageend
-
         // this new method
         if ($request->hasFile('image')) {
             $extension = request('image')->extension();
@@ -124,7 +123,6 @@ class AdminController extends Controller
             $products->image = $fileName;
         }
         // end method
-
         $products->save();
         return redirect()->back()->with('message', 'Product Addedd Successfully');
     }
@@ -149,7 +147,6 @@ class AdminController extends Controller
     //delete product delete_product
     public function delete_product($id)
     {
-
         $decryptedId = decrypt($id);
         $product = Product::find($decryptedId);
         $product->delete();
@@ -158,12 +155,9 @@ class AdminController extends Controller
 
     public function update_product_confirm(Request $request, $id)
     {
-
-        $request->validate([
-            'image' => 'required',
-        ]);
-
-
+        // $request->validate([
+        //     'image' => 'required',
+        // ]);
 
         $decryptedId = decrypt($id);
         $product = Product::find($decryptedId);
@@ -174,7 +168,6 @@ class AdminController extends Controller
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->discount_price = $request->discount_price;
-
         //image start
         // $image = $request->image;
         // $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -193,9 +186,7 @@ class AdminController extends Controller
             $product->image = $fileName;
         }
         //end 
-
         $product->save();
-
         return redirect()->route('show_product')->with('message', 'Product Upadted Successfully');
     }
 }

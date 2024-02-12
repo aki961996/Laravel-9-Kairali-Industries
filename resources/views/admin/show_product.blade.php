@@ -91,7 +91,8 @@
                                 <img class="img_size" src="{{asset('storage/product/' . $product->image)}}">
                             </td>
                             <td>
-                                <a class="btn btn-danger" onclick="return confirm('Are you sure to Delete this?')"
+                                <a class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this item?')"
                                     href="{{route('delete_product', encrypt($product->id))}}">Delete</a>
                             </td>
                             <td>

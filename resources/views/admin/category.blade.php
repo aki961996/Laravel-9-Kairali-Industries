@@ -114,6 +114,7 @@
 
                         <td>
                             <a class="btn btn-danger"
+                                onclick="return confirm('Are you sure you want to delete this item?')"
                                 href="{{route('delete_category',encrypt($category->id))}}">Delete</a>
                         </td>
                     </tr>
