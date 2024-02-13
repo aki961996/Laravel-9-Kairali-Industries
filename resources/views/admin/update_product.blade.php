@@ -156,7 +156,7 @@
                         {{-- image show to come db --}}
                         <div class="div_design">
 
-                            <label>Show Product Image:</label>
+                            <label>Show Now Product Image:</label>
                             <img class="img_css" src="{{ asset('storage/product/' . $product->image) }}"
                                 alt="productImg" />
 
