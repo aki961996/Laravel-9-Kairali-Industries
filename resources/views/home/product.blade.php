@@ -11,12 +11,27 @@
                 <div class="box">
                     <div class="option_container">
                         <div class="options">
-                            <a href="" class="option1">
-                                {{$products->title}}
+                            <a href="{{route('product_detail',encrypt($products->id))}}" class="option1">
+                                Product Detils
                             </a>
-                            <a href="" class="option2">
+                            {{-- <a href="" class="option2">
                                 Buy Now
-                            </a>
+                            </a> --}}
+                            <form action="{{route('add_cart',encrypt($products->id))}}" method="Post">
+                                @csrf
+                                <div class="justify-content-center row">
+                                    <div class="col-md-3">
+                                        <input class="w-100" type="number" name="quantity" value="1" min="1"
+                                            style="width:100px" />
+
+                                    </div>
+                                    <div class="col-md-4 pl-0 ">
+                                        <input type="submit" value="Add To Cart" class="w-100"
+                                            style="padding: 12px 5px" />
+                                    </div>
+
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="img-box">
@@ -51,11 +66,13 @@
             @endforeach
         </div>
         {{-- pagination --}}
+
         <div style="padding: 10px; float:left;">
             {!!
             $product->appends(\Illuminate\Support\Facades\Request::except('page'))->links()
             !!}
         </div>
+
         {{-- end pagination --}}
     </div>
 </section>

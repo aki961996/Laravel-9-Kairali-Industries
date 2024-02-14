@@ -13,8 +13,6 @@
         @include('admin.body')
         {{-- @yield('content') --}}
         @include('admin.script')
-
-
 </body>
 
 </html>

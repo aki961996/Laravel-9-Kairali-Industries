@@ -4,7 +4,7 @@
             <div class="col-md-4">
                 <div class="full">
                     <div class="logo_footer">
-                        <a href="#"><img width="210" src="home/images/logo.png" alt="#" /></a>
+                        <a href="#"><img width="210" src="{{asset('home/images/logo.png')}}" alt="#" /></a>
                     </div>
                     <div class="information_f">
                         <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>

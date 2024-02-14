@@ -61,3 +61,10 @@ Route::get('/delete_product/{id}', [AdminController::class, 'delete_product'])->
 
 //edit then update
 Route::post('/update_product_confirm/{id}', [AdminController::class, 'update_product_confirm'])->name('update_product_confirm');
+
+
+//home apis
+Route::get('/product_detail/{id}', [HomeController::class, 'product_detail'])->name('product_detail');
+
+//add_cart
+Route::post('/add_cart/{id}', [HomeController::class, 'add_cart'])->name('add_cart');
