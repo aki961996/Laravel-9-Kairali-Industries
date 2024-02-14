@@ -49,9 +49,7 @@ class AdminController extends Controller
         // $data = Category::find($id);
         // return view('admin.edit_category', ['edit_category' => $data]);
         $decryptedId = decrypt($id);
-
         $data = Category::find($decryptedId);
-
         if (!$data) {
             // Handle the case where the category with the decrypted ID was not found.
             abort(404); // or redirect, or show an error message, etc.
@@ -86,7 +84,6 @@ class AdminController extends Controller
 
     public function add_product(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
