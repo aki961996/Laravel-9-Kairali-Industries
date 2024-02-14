@@ -32,4 +32,11 @@ class Cart extends Model
         $cart = self::where('user_id', $id)->get();
         return $cart;
     }
+
+    //getgetCartData
+    public static function getCartData($userId)
+    {
+        $cartData = self::where('user_id', $userId)->get();
+        return $cartData;
+    }
 }

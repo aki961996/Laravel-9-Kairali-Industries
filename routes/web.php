@@ -74,3 +74,7 @@ Route::get('/show_cart', [HomeController::class, 'show_cart'])->name('show_cart'
 
 //remove_cart
 Route::get('/remove_cart/{id}', [HomeController::class, 'remove_cart'])->name('remove_cart');
+
+
+//cash on delivary api
+Route::get('/cash_order', [HomeController::class, 'cash_order'])->name('cash_order');

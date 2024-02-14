@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use GuzzleHttp\Handler\Proxy;
@@ -111,5 +112,45 @@ class HomeController extends Controller
         $cart_remove = Cart::find($decryptedId);
         $cart_remove->delete();
         return redirect()->back()->with('message', 'Cart Removed Successfully');
+    }
+
+    //cash_order  cashondelivary
+    public function cash_order()
+    {
+        $user = Auth::user();
+
+        $userId = $user->id;
+        $data = Cart::getCartData($userId);
+        // dd($data);
+        // $data = Cart::where('user_id', $userId)->get();
+        foreach ($data as $dataa) {
+
+            $order = new Order();
+
+            $order->name = $dataa->name;
+            $order->email = $dataa->email;
+            $order->phone = $dataa->phone;
+            $order->address = $dataa->address;
+            $order->user_id = $dataa->user_id;
+            $order->product_id = $dataa->product_id;
+            $order->product_title = $dataa->product_title;
+            $order->quantity = $dataa->quantity;
+            $order->price = $dataa->price;
+            $order->image = $dataa->image;
+            $order->payment_status = 'cash on delivary';
+            $order->delivary_status = 'processing';
+
+            $order->save();
+
+            // order table data save ayi then
+            //cart table le same data kal delete akal
+
+            $cart_id = $dataa->id;
+            $cart = Cart::find($cart_id);
+            $cart->delete();
+            //nice
+        }
+
+        return redirect()->back();
     }
 }

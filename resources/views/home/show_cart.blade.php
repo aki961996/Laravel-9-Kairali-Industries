@@ -84,7 +84,7 @@
 
         {{-- show cart table --}}
         <div class="center">
-            <table>
+            <table class="table">
                 <tr>
                     <th class="th_design">Product Title</th>
                     <th class="th_design">Product Quantity</th>
@@ -135,7 +135,7 @@
             {{-- end pagination --}}
             <div>
                 <h1 class="h1_css">Proceed to Order:</h1>
-                <a href="" class="btn btn-outline-dark">Cash On Delivary</a>
+                <a href="{{route('cash_order')}}" class="btn btn-outline-dark">Cash On Delivary</a>
                 <a href="" class="btn btn-outline-success">Pay Using Card</a>
             </div>
         </div>
