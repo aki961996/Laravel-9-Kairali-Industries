@@ -77,10 +77,39 @@ class HomeController extends Controller
             $cart->quantity = $request->quantity;
 
             $cart->save();
-            // return redirect()->back()->with('message', 'Cart Added Successfully');
-            return redirect()->back();
+            return redirect()->route('show_cart')->with('message', 'Cart Added Successfully');
+            // return redirect()->back();
         } else {
             return redirect('login');
         }
+    }
+
+    //show_cart
+    public function show_cart()
+    {
+
+        // HOME PAGE CART CLICK AKUBHOL ID ELLACHAL RETURN TO LOGIN
+        if (Auth::id()) {
+            $id = Auth::user()->id;
+            //login cheyth id vach cartile user_id ayit check akit venam data set akan
+            //done
+            $cart = Cart::getData($id);
+            if ($cart !== null) {
+                return view('home.show_cart', ['cart' => $cart]);
+            } else {
+                return redirect()->back()->with('error', 'Cart not found for the current user.');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    //remove cart
+    public function remove_cart($id)
+    {
+        $decryptedId = decrypt($id);
+        $cart_remove = Cart::find($decryptedId);
+        $cart_remove->delete();
+        return redirect()->back()->with('message', 'Cart Removed Successfully');
     }
 }

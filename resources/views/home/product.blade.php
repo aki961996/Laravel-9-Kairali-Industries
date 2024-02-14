@@ -67,7 +67,7 @@
         </div>
         {{-- pagination --}}
 
-        <div style="padding: 10px; float:left;">
+        <div style="padding: 10px; float:right;">
             {!!
             $product->appends(\Illuminate\Support\Facades\Request::except('page'))->links()
             !!}

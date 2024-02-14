@@ -24,7 +24,7 @@
     <!-- responsive style -->
     <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
 
-   
+
 </head>
 
 
@@ -101,7 +101,14 @@
     {{-- **************************************** --}}
     {{-- **************************************** --}}
     <!-- footer start -->
-    @include('home.footer')
+    {{-- @include('home.footer') --}}
+    <div class="cpy_">
+        <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
+
+            Distributed By <a href="" target="_blank">Aki</a>
+
+        </p>
+    </div>
     <!-- footer end -->
     <!-- jQery -->
     <script src="{{asset('home/js/jquery-3.4.1.min.js')}}"></script>
