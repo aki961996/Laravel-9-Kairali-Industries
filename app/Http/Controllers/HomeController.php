@@ -9,6 +9,10 @@ use App\Models\User;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+//stripe
+// use Session;
+use Stripe;
 
 class HomeController extends Controller
 {
@@ -151,6 +155,31 @@ class HomeController extends Controller
             //nice
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'We Received your Order, We will connect with you soon');
+    }
+
+
+    //totalPrice for stripe
+    public function stripe($totalPrice)
+    {
+        return view('home.stripe', ['totalPrize' => $totalPrice]);
+    }
+
+    //stripepost
+    public function stripePost(Request $request)
+    {
+
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        Stripe\Charge::create([
+            "amount" => 100 * 100,
+            "currency" => "usd",
+            "source" => $request->stripeToken,
+            "description" => "Thanks For Payment."
+        ]);
+
+        Session::flash('success', 'Payment successful!');
+
+        return back();
     }
 }
