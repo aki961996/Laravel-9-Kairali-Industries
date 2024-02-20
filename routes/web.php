@@ -80,6 +80,10 @@ Route::get('/remove_cart/{id}', [HomeController::class, 'remove_cart'])->name('r
 Route::get('/cash_order', [HomeController::class, 'cash_order'])->name('cash_order');
 
 //stripe
-Route::get('/stripe{totalPrice}', [HomeController::class, 'stripe'])->name('stripe');
+Route::get('/charge_stripe', [HomeController::class, 'charge_stripe'])->name('charge_stripe');
 
-Route::post('/stripe', [HomeController::class, 'stripePost'])->name('stripe.post');
+
+
+Route::post('/session', [HomeController::class, 'checkout'])->name('session');
+
+Route::get('/success', [HomeController::class, 'success'])->name('success');

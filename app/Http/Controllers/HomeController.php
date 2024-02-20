@@ -6,13 +6,20 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Exception;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+// use Illuminate\Support\Facades\Session;
 //stripe
 // use Session;
 use Stripe;
+use Stripe\Stripe as StripeStripe;
+use Stripe\Token;
+use Stripe\Exception\CardException;
+use Stripe\StripeClient;
+use Stripe\Checkout\Session;
+use Stripe\PaymentIntent;
 
 class HomeController extends Controller
 {
@@ -51,37 +58,41 @@ class HomeController extends Controller
         // dd(Auth::id());  right now null ann vara the go to else part
         $id = decrypt($id);
 
-        if (Auth::id()) {
+        if (Auth::check()) {
             $user = Auth::user();
-
             $product = Product::find($id);
 
-            $cart = new Cart();
+            if ($product) {
+                $cart_existing = Cart::where('user_id', $user->id)
+                    ->where('product_id', $product->id)
+                    ->first();
 
-            $cart->name = $user->name;
-            $cart->email = $user->email;
-            $cart->phone = $user->phone;
-            $cart->address = $user->address;
-            $cart->user_id = $user->id;
+                if ($cart_existing) {
+                    $newQuantity = $cart_existing->quantity + $request->quantity;
+                    $cart_existing->update(['quantity' => $newQuantity]);
+                } else {
+                    $cart = new Cart();
+                    $cart->user_id = $user->id;
+                    $cart->name = $user->name;
+                    $cart->email = $user->email;
+                    $cart->phone = $user->phone;
+                    $cart->address = $user->address;
 
-            $cart->product_title = $product->title;
+                    $cart->product_title = $product->title;
 
-            // means discount undel ah price kerum else ellacha price kerum
+                    // Use the null coalescing operator to simplify the price assignment
+                    $cart->price = $product->discount_price ?? $product->price;
 
-            if ($product->discount_price != null) {
-                $cart->price = $product->discount_price * $request->quantity;
-            } else {
-                $cart->price = $product->price * $request->quantity;
+                    $cart->quantity = $product->quantity;
+                    $cart->image = $product->image;
+                    $cart->product_id = $product->id;
+
+                    // You might want to use the request data instead of hardcoded quantity
+                    $cart->quantity = $request->quantity ?? 1;
+
+                    $cart->save();
+                }
             }
-
-
-            $cart->quantity = $product->quantity;
-            $cart->image = $product->image;
-            $cart->product_id = $product->id;
-
-            $cart->quantity = $request->quantity;
-
-            $cart->save();
             return redirect()->route('show_cart')->with('message', 'Cart Added Successfully');
             // return redirect()->back();
         } else {
@@ -160,26 +171,48 @@ class HomeController extends Controller
 
 
     //totalPrice for stripe
-    public function stripe($totalPrice)
+    public function charge_stripe()
     {
-        return view('home.stripe', ['totalPrize' => $totalPrice]);
+        return view('home.stripe');
     }
 
-    //stripepost
-    public function stripePost(Request $request)
+    public function  checkout()
     {
+        // dd($totalPrize);
+        $user = Auth::user();
+        $userId = $user->id;
+        $cart = Cart::getCartData($userId);
+        $line_items = [];
+        foreach ($cart as $dataa) {
+            $line_items[] = [
+                'price_data' => [
+                    'currency' => 'inr',
+                    'product_data' => [
+                        'name' => $dataa['product_title'],
+                    ],
+                    'unit_amount' => $dataa['price'] * 100,
+                ],
+                'quantity' => $dataa['quantity'],
+            ];
+        }
 
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        Stripe\Charge::create([
-            "amount" => 100 * 100,
-            "currency" => "usd",
-            "source" => $request->stripeToken,
-            "description" => "Thanks For Payment."
+        \Stripe\Stripe::setApiKey(config(key: 'stripe.sk'));
+        $session = \Stripe\Checkout\Session::create([
+
+            'line_items' => $line_items,
+            'mode' => 'payment',
+            'success_url' => route('success'),
+            'cancel_url' => route('charge_stripe'),
+
         ]);
 
-        Session::flash('success', 'Payment successful!');
 
-        return back();
+        return redirect()->away($session->url);
+    }
+
+    public function success()
+    {
+        'hey its work';
     }
 }
