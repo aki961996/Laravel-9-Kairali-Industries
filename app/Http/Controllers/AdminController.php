@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -185,5 +186,12 @@ class AdminController extends Controller
         //end 
         $product->save();
         return redirect()->route('show_product')->with('message', 'Product Upadted Successfully');
+    }
+
+    public function view_order()
+    {
+
+        $order = Order::all();
+        return view('admin.order', ['order' => $order]);
     }
 }

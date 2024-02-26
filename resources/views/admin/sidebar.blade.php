@@ -5,9 +5,10 @@
                 alt="logo" /></a>
     </div> --}}
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top ">
-        <a class="sidebar-brand brand-logo" href=""><img class="h-auto" src="/admin/assets/images/agrilogo.jpg" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="index.html"><img class="h-auto" src="/admin/assets/images/agrilogo.jpg"
+        <a class="sidebar-brand brand-logo" href=""><img class="h-auto" src="/admin/assets/images/agrilogo.jpg"
                 alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html"><img class="h-auto"
+                src="/admin/assets/images/agrilogo.jpg" alt="logo" /></a>
     </div>
 
     <ul class="nav">
@@ -98,6 +99,17 @@
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
                 <span class="menu-title">Category</span>
+            </a>
+        </li>
+        {{-- This is category tab end --}}
+
+        {{-- This is category tab --}}
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('view_order')}}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Order</span>
             </a>
         </li>
         {{-- This is category tab end --}}

@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             {{-- <a class="navbar-brand" href="{{url('/')}}"><img width="250" src="{{asset('home/images/logo.png')}}"
                     alt="#" /></a> --}}
-            <a class="navbar-brand" href="{{url('/')}}">Logo will come soon</a>
+            <a class="navbar-brand" href="{{url('/')}}">Logo</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/redirect')}}">Products</a>
+                        <a class="nav-link" href="#">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="blog_list.html">Blog</a>
