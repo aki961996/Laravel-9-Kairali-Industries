@@ -88,8 +88,11 @@ Route::get('/cash_order', [HomeController::class, 'cash_order'])->name('cash_ord
 //stripe
 Route::get('/charge_stripe', [HomeController::class, 'charge_stripe'])->name('charge_stripe');
 
-
-
 Route::post('/session', [HomeController::class, 'checkout'])->name('session');
 
 Route::get('/success', [HomeController::class, 'success'])->name('success');
+//stripe api end
+
+
+//delivered
+Route::get('/delivered{id}', [AdminController::class, 'delivered'])->name('delivered');

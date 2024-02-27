@@ -194,4 +194,15 @@ class AdminController extends Controller
         $order = Order::all();
         return view('admin.order', ['order' => $order]);
     }
+
+    //delivered
+    public function delivered(Request $request, $id)
+    {
+        $order_id = decrypt($request->id);
+        $order_table_data_asper_id = Order::find($order_id);
+        $order_table_data_asper_id->delivary_status = 'Delivered';
+        $order_table_data_asper_id->payment_status = 'Paid';
+        $order_table_data_asper_id->save();
+        return redirect()->back()->with('message', 'Delivered');
+    }
 }

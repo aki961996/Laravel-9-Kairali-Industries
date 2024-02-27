@@ -48,6 +48,16 @@
         <div class="main-panel">
             <div class="content-wrapper">
 
+                {{-- sessio flasing start --}}
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                    {{session()->get('message')}}
+                </div>
+                @endif
+
+                {{-- flashing end --}}
+
                 <h1 class="title_des">All Orders</h1>
 
                 {{-- tabel --}}
@@ -63,6 +73,7 @@
                         <th class="th_des">Payment Status</th>
                         <th class="th_des">Delivery Status</th>
                         <th class="th_des">Image</th>
+                        <th class="th_des">Delivered</th>
 
                     </tr>
                     @foreach($order as $orders)
@@ -81,6 +92,15 @@
                             <img class="img_size" src="{{ asset('storage/product/' . $orders->image) }}"
                                 alt="orderImage" />
 
+                        </td>
+                        <td>
+                            @if($orders->delivary_status == 'processing')
+                            <a href="{{ route('delivered', encrypt($orders->id)) }}"
+                                onclick="return confirm('Are you sure this product delivered!!!!')"
+                                class="btn btn-primary small">Delivered</a>
+                            @else
+                            <p style="color: green">Product is Delivered</p>
+                            @endif
                         </td>
                     </tr>
 
