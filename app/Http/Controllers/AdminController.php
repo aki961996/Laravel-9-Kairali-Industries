@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 
 class AdminController extends Controller
@@ -204,5 +206,15 @@ class AdminController extends Controller
         $order_table_data_asper_id->payment_status = 'Paid';
         $order_table_data_asper_id->save();
         return redirect()->back()->with('message', 'Delivered');
+    }
+
+    public function print_pdf(Request $request, $id)
+    {
+        $id = $request->id;
+        $decryptedId = decrypt($id);
+        $order_datas = Order::find($decryptedId);
+
+        $pdf = FacadePdf::loadView('admin.pdf', ['order_data' => $order_datas]);
+        return $pdf->download('order_details.pdf');
     }
 }

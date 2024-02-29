@@ -75,6 +75,8 @@
                         <th class="th_des">Image</th>
                         <th class="th_des">Delivered</th>
 
+                        <th class="th_des">Print Pdf</th>
+
                     </tr>
                     @foreach($order as $orders)
                     <tr>
@@ -101,6 +103,9 @@
                             @else
                             <p style="color: green">Product is Delivered</p>
                             @endif
+                        </td>
+                        <td>
+                            <a href="{{route('print_pdf', encrypt($orders->id))}}" class="btn btn-info sm">Print Pdf</a>
                         </td>
                     </tr>
 

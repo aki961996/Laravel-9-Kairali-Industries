@@ -96,3 +96,7 @@ Route::get('/success', [HomeController::class, 'success'])->name('success');
 
 //delivered
 Route::get('/delivered{id}', [AdminController::class, 'delivered'])->name('delivered');
+
+
+//print_pdf
+Route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf'])->name('print_pdf');
