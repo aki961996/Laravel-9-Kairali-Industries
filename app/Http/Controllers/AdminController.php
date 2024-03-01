@@ -213,7 +213,6 @@ class AdminController extends Controller
         $id = $request->id;
         $decryptedId = decrypt($id);
         $order_datas = Order::find($decryptedId);
-
         $pdf = FacadePdf::loadView('admin.pdf', ['order_data' => $order_datas]);
         return $pdf->download('order_details.pdf');
     }

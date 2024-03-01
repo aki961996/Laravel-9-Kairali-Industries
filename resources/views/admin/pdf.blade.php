@@ -24,8 +24,7 @@
     Product ID:<h3>{{$order_data->product_id}}</h3>
 
 
-    <img class="" src="{{asset('storage/product/' . $order_data->image)}}">
-
+    <img style="width: 150px; height: 150px;" src="{{ public_path('storage/product/' . $order_data->image) }}" alt="" />
 
 
 
