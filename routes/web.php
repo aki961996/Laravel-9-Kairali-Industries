@@ -66,9 +66,6 @@ Route::post('/update_product_confirm/{id}', [AdminController::class, 'update_pro
 Route::get('/view_order', [AdminController::class, 'view_order'])->name('view_order');
 
 
-
-
-
 //home apis
 Route::get('/product_detail/{id}', [HomeController::class, 'product_detail'])->name('product_detail');
 
@@ -93,10 +90,8 @@ Route::post('/session', [HomeController::class, 'checkout'])->name('session');
 Route::get('/success', [HomeController::class, 'success'])->name('success');
 //stripe api end
 
-
 //delivered
 Route::get('/delivered{id}', [AdminController::class, 'delivered'])->name('delivered');
-
 
 //print_pdf
 Route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf'])->name('print_pdf');

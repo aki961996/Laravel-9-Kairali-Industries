@@ -48,7 +48,6 @@ class HomeController extends Controller
     {
         $decryptedId = decrypt($id);
         $product = Product::find($decryptedId);
-
         return view('home.product_details', ['product' => $product]);
     }
 
@@ -57,7 +56,6 @@ class HomeController extends Controller
     {
         // dd(Auth::id());  right now null ann vara the go to else part
         $id = decrypt($id);
-
         if (Auth::check()) {
             $user = Auth::user();
             $product = Product::find($id);
@@ -82,7 +80,6 @@ class HomeController extends Controller
 
                     // Use the null coalescing operator to simplify the price assignment
                     $cart->price = $product->discount_price ?? $product->price;
-
                     $cart->quantity = $product->quantity;
                     $cart->image = $product->image;
                     $cart->product_id = $product->id;
@@ -133,7 +130,6 @@ class HomeController extends Controller
     public function cash_order()
     {
         $user = Auth::user();
-
         $userId = $user->id;
         $data = Cart::getCartData($userId);
         // dd($data);

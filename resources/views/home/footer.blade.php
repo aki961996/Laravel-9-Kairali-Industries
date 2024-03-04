@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="full">
-                    <div class="logo_footer">
-                        <a href="#"><img width="210" src="{{asset('home/images/logo.png')}}" alt="#" /></a>
-                    </div>
+                    {{-- <div class="logo_footer">
+                        <a href="#"><img width="90" src="{{asset('admin/assets/images/7.jpg')}}" alt="#" /></a>
+                    </div> --}}
                     <div class="information_f">
-                        <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>
+                        <p><strong>ADDRESS:</strong> 26 male, kavalappara, Shoranur</p>
                         <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
                         <p><strong>EMAIL:</strong> yourmain@gmail.com</p>
                     </div>
@@ -23,9 +23,10 @@
                                     <ul>
                                         <li><a href="#">Home</a></li>
                                         <li><a href="#">About</a></li>
-                                        <li><a href="#">Services</a></li>
+                                        {{-- <li><a href="#">Services</a></li>
                                         <li><a href="#">Testimonial</a></li>
-                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Products</a></li> --}}
+                                        <li><a href="#">Products</a></li>
                                         <li><a href="#">Contact</a></li>
                                     </ul>
                                 </div>
@@ -35,11 +36,10 @@
                                     <h3>Account</h3>
                                     <ul>
                                         <li><a href="#">Account</a></li>
-                                        <li><a href="#">Checkout</a></li>
+                                        <li><a href="#">Cart</a></li>
                                         <li><a href="#">Login</a></li>
                                         <li><a href="#">Register</a></li>
-                                        <li><a href="#">Shopping</a></li>
-                                        <li><a href="#">Widget</a></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
 
 <div class="cpy_">
     <p class="mx-auto">&copy;
-        <?php echo date("Y"); ?> All Rights Reserved By <a href="">Company Website</a><br>
+        <?php echo date("Y"); ?> All Rights Reserved By <a href="">Kairali industries</a><br>
 
         Distributed By <a href="" target="_blank">Tech &hearts;</a>
 

@@ -193,7 +193,7 @@ class AdminController extends Controller
     public function view_order()
     {
 
-        $order = Order::all();
+        $order = Order::orderBy('id', 'asc')->paginate(10);
         return view('admin.order', ['order' => $order]);
     }
 
