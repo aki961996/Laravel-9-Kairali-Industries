@@ -44,7 +44,7 @@
                     </x-app-layout>
                     @else
                     <li class="nav-item">
-                        <a class="btn btn-primary" href="{{ route('login') }}" id="logincss">Login</a>
+                        <a class="btn btn-dark" href="{{ route('login') }}" id="logincss">Login</a>
                     </li>
 
                     <li class="nav-item">

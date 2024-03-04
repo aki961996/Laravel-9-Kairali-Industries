@@ -1124,7 +1124,7 @@ form input[type="submit"]:focus {
 
 #logincss{
   margin-right: 10px;
-  background-color: rgb(26, 71, 197);
+  background-color: rgb(0, 0, 0);
    border: 0;
    transition: all ease-out .5s;
    -webkit-transition: all ease-out .5s;
@@ -1134,14 +1134,14 @@ form input[type="submit"]:focus {
 }
 
 #logincss:hover{
-  background-color: #0000FF;
+  background-color: #197a24;
   /* border-color: #f7444e; */
 }
 
 /* register css */
 
 #registercss{
-  background-color:#28a745;
+  background-color:#d3152b;
     border: 0;
     transition: all ease-out .5s;
     -webkit-transition: all ease-out .5s;
@@ -1150,7 +1150,7 @@ form input[type="submit"]:focus {
 }
 
 #registercss:hover {
-  background-color:#0f6092;
+  background-color:#023b5e;
   /* border-color: #f7444e; */
 }
 
