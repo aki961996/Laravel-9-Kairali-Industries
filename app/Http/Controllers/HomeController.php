@@ -130,9 +130,11 @@ class HomeController extends Controller
     public function cash_order()
     {
         $user = Auth::user();
+
         $userId = $user->id;
+
         $data = Cart::getCartData($userId);
-        // dd($data);
+       
         // $data = Cart::where('user_id', $userId)->get();
         foreach ($data as $dataa) {
 

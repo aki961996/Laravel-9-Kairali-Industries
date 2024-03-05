@@ -75,15 +75,14 @@
                             <th class="th_des">Delivery Status</th>
                             <th class="th_des">Image</th>
                             <th class="th_des">Delivered</th>
-
                             <th class="th_des">Print Pdf</th>
+                            <th class="th_des">Send Email</th>
 
                         </tr>
                         @foreach($order as $orders)
                         <tr>
                             <td>{{$orders->name}}</td>
                             <td>{{$orders->email}}</td>
-
                             <td>{{$orders->address}}</td>
                             <td>{{$orders->phone}}</td>
                             <td>{{$orders->product_title}}</td>
@@ -109,6 +108,12 @@
                                 <a href="{{route('print_pdf', encrypt($orders->id))}}" class="btn btn-info sm">Print
                                     Pdf</a>
                             </td>
+                            <td>
+                                <a href="{{route('send_email', encrypt($orders->id))}}"
+                                    class="btn btn-secondary sm">Send
+                                    Email</a>
+                            </td>
+
                         </tr>
 
                         @endforeach

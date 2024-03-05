@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Notifications\SendEmailNotification;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Validator;
 use PDF;
+
 
 
 class AdminController extends Controller
@@ -179,7 +182,6 @@ class AdminController extends Controller
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             // Delete old image
             Storage::delete('product/' . $product->image);
-
             $extension = request('image')->extension();
             $fileName = 'img' . time() . '.' . $extension;
             request('image')->storeAs('product', $fileName);
@@ -193,7 +195,7 @@ class AdminController extends Controller
     public function view_order()
     {
 
-        $order = Order::orderBy('id', 'asc')->paginate(10);
+        $order = Order::orderBy('id', 'desc')->paginate(10);
         return view('admin.order', ['order' => $order]);
     }
 
@@ -215,5 +217,32 @@ class AdminController extends Controller
         $order_datas = Order::find($decryptedId);
         $pdf = FacadePdf::loadView('admin.pdf', ['order_data' => $order_datas]);
         return $pdf->download('order_details.pdf');
+    }
+
+    public function send_email($id)
+    {
+        $id = decrypt($id);
+        $orderData = Order::find($id);
+        return view('admin.email_info', ['orders' => $orderData]);
+    }
+
+    public function send_user_email(Request $request, $id)
+    {
+
+        $decryptedId = decrypt($id);
+        $order = Order::find($decryptedId);
+
+        $details = [
+            'greeting' => $request->greeting,
+            'firstling' => $request->firstling,
+            'body' => $request->body,
+            'button' => $request->button,
+            'url' => $request->url,
+            'lastline' => $request->lastline,
+        ];
+
+        Notification::send($order, new SendEmailNotification($details));
+
+        return redirect()->back()->with('message', 'Email Sended Successfull');
     }
 }
