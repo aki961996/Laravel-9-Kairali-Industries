@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Validator;
 use PDF;
-
-
+use Svg\Tag\Rect;
 
 class AdminController extends Controller
 {
@@ -244,5 +243,25 @@ class AdminController extends Controller
         Notification::send($order, new SendEmailNotification($details));
 
         return redirect()->back()->with('message', 'Email Sended Successfull');
+    }
+
+    public function search(Request $request)
+    {
+        //validation
+        // $validator = Validator::make($request->all(), [
+        //     'search' => 'required',
+
+        // ]);
+        // $validated = $validator->validated();
+        // $validated = $validator->safe()->only(['search']);
+        //validation
+
+        $searchText = $request->search;  //This search is name in input field
+        $order = Order::where('name', 'like', '%' . $searchText . '%')
+            ->orWhere('phone', 'like', '%' . $searchText . '%')
+            ->orWhere('email', 'like', '%' . $searchText . '%')
+            ->orWhere('product_title', 'like', '%' . $searchText . '%')
+            ->paginate();
+        return view('admin.order', ['order' => $order]);
     }
 }

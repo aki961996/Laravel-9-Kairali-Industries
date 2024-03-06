@@ -21,12 +21,12 @@
                                 <div class="widget_menu">
                                     <h3>Menu</h3>
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About</a></li>
+                                        <li><a href="{{url('/redirect')}}">Home</a></li>
+                                        <li><a href="{{url('/redirect')}}">About</a></li>
                                         {{-- <li><a href="#">Services</a></li>
                                         <li><a href="#">Testimonial</a></li>
                                         <li><a href="#">Products</a></li> --}}
-                                        <li><a href="#">Products</a></li>
+                                        <li><a href="{{url('/redirect')}}">Products</a></li>
                                         <li><a href="#">Contact</a></li>
                                     </ul>
                                 </div>
@@ -35,10 +35,10 @@
                                 <div class="widget_menu">
                                     <h3>Account</h3>
                                     <ul>
-                                        <li><a href="#">Account</a></li>
-                                        <li><a href="#">Cart</a></li>
-                                        <li><a href="#">Login</a></li>
-                                        <li><a href="#">Register</a></li>
+                                        <li><a href="{{url('/redirect')}}">Account</a></li>
+                                        <li><a href="{{url('show_cart')}}">Cart</a></li>
+                                        <li><a href="{{url('login')}}">Login</a></li>
+                                        <li><a href="{{url('register')}}">Register</a></li>
 
                                     </ul>
                                 </div>

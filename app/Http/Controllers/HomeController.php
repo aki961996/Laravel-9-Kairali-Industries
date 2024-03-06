@@ -36,7 +36,23 @@ class HomeController extends Controller
         $usertype = Auth::user()->usertype;
         // dd($usertype);
         if ($usertype == '1') {
-            return view('admin.home');
+
+
+            $total_products = Product::all()->count();
+            $total_orders = Order::all()->count();
+            $total_users = User::all()->count();
+
+            $order = Order::all();
+            $total_revenue = 0;
+            foreach ($order as $orders) {
+                $total_revenue = $total_revenue + $orders->price;
+            }
+
+            $total_delivered = Order::where('delivary_status', '=', 'Delivered')->get()->count();
+
+            $total_processing = Order::where('delivary_status', '=', 'processing')->get()->count();
+
+            return view('admin.home', ['total_products' => $total_products, 'total_orders' => $total_orders, 'total_users' => $total_users, 'total_revenue' => $total_revenue, 'total_deliverd' => $total_delivered, 'total_processing' => $total_processing]);
         } else {
             $product = Product::orderBy('id', 'asc')->paginate(6);
             return view('home.userpage', ['product' => $product]);
@@ -134,7 +150,7 @@ class HomeController extends Controller
         $userId = $user->id;
 
         $data = Cart::getCartData($userId);
-       
+
         // $data = Cart::where('user_id', $userId)->get();
         foreach ($data as $dataa) {
 

@@ -35,6 +35,10 @@
             width: 155px;
             height: 100px;
         }
+
+        .text_color {
+            color: black;
+        }
     </style>
 </head>
 
@@ -42,12 +46,9 @@
     <div class="container-scroller">
         @include('admin.sidebar')
         @include('admin.header')
-
         {{-- body --}}
-
         <div class="main-panel">
             <div class="content-wrapper">
-
                 {{-- sessio flasing start --}}
                 @if(session()->has('message'))
                 <div class="alert alert-success">
@@ -55,10 +56,24 @@
                     {{session()->get('message')}}
                 </div>
                 @endif
-
                 {{-- flashing end --}}
-
                 <h1 class="title_des">All Orders</h1>
+
+                {{-- search start --}}
+                <div style="padding-left:400px; padding-bottom:30px">
+                    <form action="{{route('search')}}" method="GET">
+                        @csrf
+                        <input type="text" class="text_color" name="search" placeholder="Search For Something">
+
+                        <input type="submit" value="Search" class="btn btn-info sm">
+                        {{-- <div class="error_style" style="color: red">{{$errors->first('search')}}</div> --}}
+                    </form>
+
+                </div>
+                {{-- search end --}}
+
+
+
 
                 {{-- tabel --}}
                 <div class="table-responsive">
@@ -79,7 +94,7 @@
                             <th class="th_des">Send Email</th>
 
                         </tr>
-                        @foreach($order as $orders)
+                        @forelse($order as $orders)
                         <tr>
                             <td>{{$orders->name}}</td>
                             <td>{{$orders->email}}</td>
@@ -115,8 +130,14 @@
                             </td>
 
                         </tr>
+                        @empty
+                        <tr>
+                            <td colspan="15">
+                                No Data Found.
+                            </td>
+                        </tr>
 
-                        @endforeach
+                        @endforelse
                     </table>
                 </div>
 
