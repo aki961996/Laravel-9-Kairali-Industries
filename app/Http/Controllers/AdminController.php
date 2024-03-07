@@ -264,4 +264,6 @@ class AdminController extends Controller
             ->paginate();
         return view('admin.order', ['order' => $order]);
     }
+
+   
 }

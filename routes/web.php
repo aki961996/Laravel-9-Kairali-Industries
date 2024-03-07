@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+
 Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware([
@@ -65,7 +66,6 @@ Route::post('/update_product_confirm/{id}', [AdminController::class, 'update_pro
 //admin order
 Route::get('/view_order', [AdminController::class, 'view_order'])->name('view_order');
 
-
 //home apis
 Route::get('/product_detail/{id}', [HomeController::class, 'product_detail'])->name('product_detail');
 
@@ -77,7 +77,6 @@ Route::get('/show_cart', [HomeController::class, 'show_cart'])->name('show_cart'
 
 //remove_cart
 Route::get('/remove_cart/{id}', [HomeController::class, 'remove_cart'])->name('remove_cart');
-
 
 //cash on delivary api
 Route::get('/cash_order', [HomeController::class, 'cash_order'])->name('cash_order');
@@ -104,3 +103,9 @@ Route::post('/send_user_email/{id}', [AdminController::class, 'send_user_email']
 
 //search
 Route::get('/search', [AdminController::class, 'search'])->name('search');
+
+//show_order order tab in home home controlelr 
+Route::get('/show_order', [HomeController::class, 'show_order'])->name('show_order');
+
+//remove_order
+Route::get('/remove_order/{id}', [HomeController::class, 'remove_order'])->name('remove_order');

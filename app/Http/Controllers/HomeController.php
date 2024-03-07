@@ -229,4 +229,32 @@ class HomeController extends Controller
     {
         'hey its work';
     }
+
+    //show_order
+
+    public function show_order()
+    {
+        if (Auth::id()) {
+            $id = Auth::user()->id;
+            $order = Order::where('user_id', $id)->get();
+
+            if ($order !== null) {
+                return view('home.show_order', ['order' => $order]);
+            } else {
+
+                return redirect()->back()->with('error', 'Order not found for the current user.');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    //remove_order
+    public function  remove_order($id)
+    {
+        $decryptedId = decrypt($id);
+        $order = Order::find($decryptedId);
+        $order->delete();
+        return redirect()->back()->with('message', 'Order removed successfully');
+    }
 }

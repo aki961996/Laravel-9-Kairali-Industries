@@ -7,9 +7,9 @@
                         <a href="#"><img width="90" src="{{asset('admin/assets/images/7.jpg')}}" alt="#" /></a>
                     </div> --}}
                     <div class="information_f">
-                        <p><strong>ADDRESS:</strong> 26 male, kavalappara, Shoranur</p>
+                        <p><strong>ADDRESS:</strong> 26:Male, kavalappara, Shoranur</p>
                         <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
-                        <p><strong>EMAIL:</strong> yourmain@gmail.com</p>
+                        <p><strong>EMAIL:</strong> akhileshakhil96.aa@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -23,8 +23,8 @@
                                     <ul>
                                         <li><a href="{{url('/redirect')}}">Home</a></li>
                                         <li><a href="{{url('/redirect')}}">About</a></li>
-                                        {{-- <li><a href="#">Services</a></li>
-                                        <li><a href="#">Testimonial</a></li>
+                                        {{-- <li><a href="{{url('/show_order')}}">Order</a></li> --}}
+                                        {{-- <li><a href="#">Testimonial</a></li>
                                         <li><a href="#">Products</a></li> --}}
                                         <li><a href="{{url('/redirect')}}">Products</a></li>
                                         <li><a href="#">Contact</a></li>
@@ -37,6 +37,7 @@
                                     <ul>
                                         <li><a href="{{url('/redirect')}}">Account</a></li>
                                         <li><a href="{{url('show_cart')}}">Cart</a></li>
+                                        <li><a href="{{url('/show_order')}}">Order</a></li>
                                         <li><a href="{{url('login')}}">Login</a></li>
                                         <li><a href="{{url('register')}}">Register</a></li>
 

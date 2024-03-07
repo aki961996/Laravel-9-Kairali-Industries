@@ -36,6 +36,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('show_cart')}}">Cart</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('show_order')}}">Order</a>
+                    </li>
 
                     @if (Route::has('login'))
 
