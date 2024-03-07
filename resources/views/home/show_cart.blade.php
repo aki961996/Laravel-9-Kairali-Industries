@@ -108,8 +108,8 @@
                 <tr>
                     <td>{{$cartn->product_title}}</td>
                     <td>{{$cartn->quantity}}</td>
-                    <td>${{$cartn->price}}</td>
-                    <td>${{$cartn->price * $cartn->quantity}}</td>
+                    <td>&#8377;{{$cartn->price}}</td>
+                    <td>&#8377;{{$cartn->price * $cartn->quantity}}</td>
                     <td>
                         <img class="img_des" src="{{asset('storage/product/'. $cartn->image)}}" alt="cartImg" />
                     </td>

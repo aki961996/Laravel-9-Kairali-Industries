@@ -249,12 +249,15 @@ class HomeController extends Controller
         }
     }
 
+
     //remove_order
     public function  remove_order($id)
     {
         $decryptedId = decrypt($id);
         $order = Order::find($decryptedId);
-        $order->delete();
-        return redirect()->back()->with('message', 'Order removed successfully');
+        // $makeTheText = Order::makeTextBold('YOU CANCELED THE ORDER');
+        $order->delivary_status = 'YOU CANCELED THE ORDER';
+        $order->save();
+        return redirect()->back()->with('message', 'Order Canceled Successfully and just visit Delivary Status!!!');
     }
 }

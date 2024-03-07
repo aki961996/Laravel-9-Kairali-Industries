@@ -97,33 +97,32 @@
                     <th class="th_design">Payment Status</th>
                     <th class="th_design">Delivary Status</th>
                     <th class="th_design">Image</th>
-                    <th class="th_design">Action</th>
+                    <th class="th_design">Cancel Order</th>
                 </tr>
                 @foreach($order as $orders)
                 <tr>
                     <td>{{$orders->product_title}}</td>
                     <td>{{$orders->quantity}}</td>
-                    <td>${{$orders->price}}</td>
-                    <td>${{$orders->price * $orders->quantity}}</td>
+                    <td>&#8377;{{$orders->price}}</td>
+                    <td>&#8377;{{$orders->price * $orders->quantity}}</td>
                     <td>{{$orders->payment_status}}</td>
                     <td>{{$orders->delivary_status}}</td>
                     <td>
                         <img class="img_des" src="{{asset('storage/product/'. $orders->image)}}" alt="cartImg" />
                     </td>
                     <td>
+                        @if($orders->delivary_status == 'processing')
                         <a href="{{route('remove_order', encrypt($orders->id))}}" class="btn btn-outline-danger"
-                            onclick="return confirm('Are you sure to remove this product?')">Remove Order
-                            Product
-                        </a>
+                            onclick="return confirm('Are you sure to cancel this Order?')">Cancel Order</a>
+                        @else
+                        <p style="color:blue">Not Allowed</p>
+                        @endif
                     </td>
                 </tr>
-
                 @endforeach
-
             </table>
 
             {{-- i am just plan to put pagination but some logic are do it more --}}
-
             {{-- pagination --}}
             {{-- <div style="padding: 10px; float:right;">
                 {!!
@@ -131,15 +130,12 @@
                 !!}
             </div> --}}
             {{-- end pagination --}}
-
         </div>
         @else
         <div class="center">
             <div class="container-fluid  mt-100">
                 <div class="row">
-
                     <div class="col-md-12">
-
                         <div class="card">
                             <div class="card-header">
                                 <h5>Order</h5>
@@ -157,12 +153,8 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
                 </div>
-
             </div>
         </div>
         @endif
@@ -175,7 +167,6 @@
             </p>
         </div>
         <!-- footer end -->
-
         <!-- jQery -->
         <script src="{{asset('home/js/jquery-3.4.1.min.js')}}"></script>
         <script src="{{asset('home/js/popper.min.js')}}"></script>

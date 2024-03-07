@@ -86,6 +86,7 @@
                             <th class="th_des">Product Title</th>
                             <th class="th_des">Quantity</th>
                             <th class="th_des">Price</th>
+                            <th class="th_des">Total Price</th>
                             <th class="th_des">Payment Status</th>
                             <th class="th_des">Delivery Status</th>
                             <th class="th_des">Image</th>
@@ -102,7 +103,8 @@
                             <td>{{$orders->phone}}</td>
                             <td>{{$orders->product_title}}</td>
                             <td>{{$orders->quantity}}</td>
-                            <td>{{$orders->price}}</td>
+                            <td>&#8377;{{$orders->price}}</td>
+                            <td>&#8377;{{ $orders->price * $orders->quantity }}</td>
                             <td>{{$orders->payment_status}}</td>
                             <td>{{$orders->delivary_status}}</td>
                             <td>
