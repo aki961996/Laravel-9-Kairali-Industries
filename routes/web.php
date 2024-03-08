@@ -109,3 +109,10 @@ Route::get('/show_order', [HomeController::class, 'show_order'])->name('show_ord
 
 //remove_order
 Route::get('/remove_order/{id}', [HomeController::class, 'remove_order'])->name('remove_order');
+
+//comment side in home
+Route::post('/comment_add', [HomeController::class, 'comment_add'])->name('comment_add');
+
+
+//reply_comment
+Route::post('/add_reply', [HomeController::class, 'add_reply'])->name('add_reply');
