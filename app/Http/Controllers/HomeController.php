@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Comment;
+use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Reply;
@@ -12,6 +13,7 @@ use Exception;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Psy\CodeCleaner\ReturnTypePass;
 // use Illuminate\Support\Facades\Session;
 //stripe
@@ -331,5 +333,49 @@ class HomeController extends Controller
             ->orWhere('catagory', 'LIKE', '%' . $search_text . '%')
             ->paginate(7);
         return view('home.all_products', ['product' => $products]);
+    }
+
+    //contactpage
+    public function contact()
+    {
+        return view('home.contact');
+    }
+
+    //contact form store
+    public function store(Request $request)
+    {
+
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+
+        ]);
+        $validated = $validator->validated();
+        $contact = new Contact();
+
+        if (Auth::id()) {
+            $contact->name = $request->name;
+            $contact->email = $request->email;
+            $contact->phone = $request->phone;
+            $contact->subject = $request->subject;
+            $contact->message = $request->message;
+            $contact->user_id = Auth::user()->id;
+            $contact->save();
+            return redirect()->back()->with('success', 'We will connect you!!!');
+        } else {
+
+            $contact->name = $request->name;
+            $contact->email = $request->email;
+            $contact->phone = $request->phone;
+            $contact->subject = $request->subject;
+            $contact->message = $request->message;
+            $contact->user_id = "Not Logged";
+            $contact->save();
+            return redirect()->back()->with('success', 'We will connect you!!!');
+        }
     }
 }

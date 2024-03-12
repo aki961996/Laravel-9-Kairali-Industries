@@ -127,3 +127,9 @@ Route::get('/products', [HomeController::class, 'products']);
 //search_product indugul product page
 //search
 Route::get('/search_product', [HomeController::class, 'search_product'])->name('search_product');
+
+//contact
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+//post
+Route::post('/contact_us', [HomeController::class, 'store'])->name('contact_us');
