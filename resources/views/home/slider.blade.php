@@ -1,6 +1,7 @@
 <section class="slider_section ">
     <div class="slider_bg_box">
-        <img src="home/images/slider-bg.jpg" alt="">
+        <img src="{{asset('home/images/kairali-bg.jpeg')}}" alt="">
+        {{-- <img src="{{asset('home/images/slider-bg.jpg')}}" alt=""> --}}
     </div>
     <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -11,16 +12,15 @@
                             <div class="detail-box">
                                 <h1>
                                     <span>
-                                        Sale 20% Off
+                                        Improve your well-being in the company
                                     </span>
                                     <br>
-                                    On Everything
+                                    
                                 </h1>
-                                <p>
-                                    Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam
-                                    fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat
-                                    molestias, veniam, vel architecto veritatis delectus repellat modi impedit
-                                    sequi.
+                                <p style="color: white">
+                                    Office work often leads to discomfort and muscle tightness. With these couple of
+                                    exercises, we help to alleviating the
+                                    pain associated with desk jobs.
                                 </p>
                                 <div class="btn-box">
                                     <a href="" class="btn1">
@@ -44,7 +44,7 @@
                                     <br>
                                     On Everything
                                 </h1>
-                                <p>
+                                <p style="color: white">
                                     Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam
                                     fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat
                                     molestias, veniam, vel architecto veritatis delectus repellat modi impedit
@@ -67,16 +67,15 @@
                             <div class="detail-box">
                                 <h1>
                                     <span>
-                                        Sale 20% Off
+                                        Improve your well-being in the office
                                     </span>
                                     <br>
                                     On Everything
                                 </h1>
-                                <p>
-                                    Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam
-                                    fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat
-                                    molestias, veniam, vel architecto veritatis delectus repellat modi impedit
-                                    sequi.
+                                <p style="color: white">
+                                    Office work often leads to discomfort and muscle tightness. With these couple of
+                                    exercises, we help to alleviating the
+                                    pain associated with desk jobs.
                                 </p>
                                 <div class="btn-box">
                                     <a href="" class="btn1">
