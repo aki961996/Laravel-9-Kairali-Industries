@@ -110,9 +110,20 @@ Route::get('/show_order', [HomeController::class, 'show_order'])->name('show_ord
 //remove_order
 Route::get('/remove_order/{id}', [HomeController::class, 'remove_order'])->name('remove_order');
 
-//comment side in home
-Route::post('/comment_add', [HomeController::class, 'comment_add'])->name('comment_add');
+// //comment side in home
+// Route::post('/comment_add', [HomeController::class, 'comment_add'])->name('comment_add');
 
 
-//reply_comment
-Route::post('/add_reply', [HomeController::class, 'add_reply'])->name('add_reply');
+// //reply_comment
+// Route::post('/add_reply', [HomeController::class, 'add_reply'])->name('add_reply');
+
+
+//search_products we can search for api all products
+Route::get('/product_search', [HomeController::class, 'product_search'])->name('product_search');
+
+//products
+Route::get('/products', [HomeController::class, 'products']);
+
+//search_product indugul product page
+//search
+Route::get('/search_product', [HomeController::class, 'search_product'])->name('search_product');

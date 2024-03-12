@@ -1,13 +1,10 @@
 <section class="product_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
-            <h2>
-                Our <span>products</span>
-            </h2>
-            <br><br>
+
             {{-- search our products --}}
             <div>
-                <form action="{{route('product_search')}}" method="get">
+                <form action="{{route('search_product')}}" method="get">
                     @csrf
                     <input style="width:500px;" type="text" name="search" placeholder="Search for something.">
                     <input type="submit" value="search">

@@ -105,31 +105,17 @@
         <!-- header section strats -->
         @include('home.header')
         <!-- end header section -->
-        <!-- slider section -->
-        @include('home.slider')
-        <!-- end slider section -->
+
+
+        <!-- product section -->
+        @include('home.product_view')
+        <!-- end product section -->
+
+
+        <!-- footer start -->
+        @include('home.footer')
+        <!-- footer end -->
     </div>
-    <!-- why section -->
-    @include('home.endwhysection')
-    <!-- end why section -->
-
-    <!-- arrival section -->
-    {{-- @include('home.arrival') --}}
-    <!-- end arrival section -->
-
-     <!-- product section -->
-     @include('home.product')
-     <!-- end product section -->
-
-    <!-- subscribe section -->
-    {{-- @include('home.subscribe') --}}
-    <!-- end subscribe section -->
-    <!-- client section -->
-    {{-- @include('home.client') --}}
-    <!-- end client section -->
-    <!-- footer start -->
-    @include('home.footer')
-    <!-- footer end -->
 
     {{-- Refresh Page and Keep Scroll Position --}}
     <script>

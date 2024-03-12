@@ -30,10 +30,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        $product = Product::orderBy('id', 'asc')->paginate(6);
-        $comments = Comment::orderBy('created_at', 'desc')->get();
-        $reply = Reply::orderBy('created_at', 'desc')->get();
-        return view('home.userpage', ['product' => $product, 'comment' => $comments, 'reply' => $reply]);
+        $product = Product::orderBy('id', 'asc')->paginate(7);
+        // $comments = Comment::orderBy('created_at', 'desc')->get();
+        // $reply = Reply::orderBy('created_at', 'desc')->get();
+        return view('home.userpage', ['product' => $product]);
     }
 
 
@@ -271,39 +271,65 @@ class HomeController extends Controller
         return redirect()->back()->with('message', 'Order Canceled Successfully and just visit Delivary Status!!!');
     }
 
-    public function comment_add(Request $request)
-    {
-        // dd(Auth::user());
-        if (Auth::id()) {
-            // The user is authenticated
-            $comment = new Comment();
-            $comment->name = Auth::user()->name;
-            $comment->comment = $request->comment;
-            $comment->user_id = Auth::user()->id;
-            $comment->save();
-            // return redirect()->back()->with('message', 'Comment Addedd Successfully');
-            return redirect()->back();
-        } else {
-            // The user is not authenticated
-            return redirect('login');
-            // return response()->json(['message' => 'User not authenticated'], 401);
-        }
-    }
+    // public function comment_add(Request $request)
+    // {
+    //     // dd(Auth::user());
+    //     if (Auth::id()) {
+    //         // The user is authenticated
+    //         $comment = new Comment();
+    //         $comment->name = Auth::user()->name;
+    //         $comment->comment = $request->comment;
+    //         $comment->user_id = Auth::user()->id;
+    //         $comment->save();
+    //         // return redirect()->back()->with('message', 'Comment Addedd Successfully');
+    //         return redirect()->back();
+    //     } else {
+    //         // The user is not authenticated
+    //         return redirect('login');
+    //         // return response()->json(['message' => 'User not authenticated'], 401);
+    //     }
+    // }
 
     //reply_comment
-    public function add_reply(Request $request)
+    // public function add_reply(Request $request)
+    // {
+    //     if (Auth::id()) {
+    //         $reply = new Reply();
+    //         $reply->name = Auth::user()->name;
+    //         $reply->comment_id = $request->commentId;
+    //         $reply->user_id = Auth::user()->id;
+    //         $reply->reply = $request->reply;
+    //         $reply->save();
+    //         return redirect()->back();
+    //     } else {
+    //         // The user is not authenticated
+    //         return redirect('login');
+    //     }
+    // }
+
+    //product product_search 
+    public function product_search(Request $request)
     {
-        if (Auth::id()) {
-            $reply = new Reply();
-            $reply->name = Auth::user()->name;
-            $reply->comment_id = $request->commentId;
-            $reply->user_id = Auth::user()->id;
-            $reply->reply = $request->reply;
-            $reply->save();
-            return redirect()->back();
-        } else {
-            // The user is not authenticated
-            return redirect('login');
-        }
+        $search_text = $request->search;
+        $products = Product::where('title', 'LIKE', '%' . $search_text . '%')
+            ->orWhere('catagory', 'LIKE', '%' . $search_text . '%')
+            ->paginate(7);
+        return view('home.userpage', ['product' => $products]);
+    }
+
+    public function products()
+    {
+        $product = Product::orderBy('id', 'asc')->paginate(7);
+        return view('home.all_products', ['product' => $product]);
+    }
+
+    //serarch product  product tab click and serch this
+    public function search_product(Request $request)
+    {
+        $search_text = $request->search;
+        $products = Product::where('title', 'LIKE', '%' . $search_text . '%')
+            ->orWhere('catagory', 'LIKE', '%' . $search_text . '%')
+            ->paginate(7);
+        return view('home.all_products', ['product' => $products]);
     }
 }
