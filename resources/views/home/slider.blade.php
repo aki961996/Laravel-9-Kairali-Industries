@@ -11,11 +11,11 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                    <span>
+                                    <span style="color: white">
                                         Improve your well-being in the company
                                     </span>
                                     <br>
-                                    
+
                                 </h1>
                                 <p style="color: white">
                                     Office work often leads to discomfort and muscle tightness. With these couple of
@@ -66,7 +66,7 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                    <span>
+                                    <span style="color: white">
                                         Improve your well-being in the office
                                     </span>
                                     <br>
