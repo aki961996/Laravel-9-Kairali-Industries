@@ -1,7 +1,7 @@
 <section class="product_section layout_padding">
     <div class="container">
-        <div class="row ">
-            <div class="col-10 offset-1 ">
+        <div class="row">
+            <div class="col-10 offset-1">
                 <div class="card">
                     <div class="card-header">
                         <h2>Contact Us.</h2>
@@ -27,7 +27,7 @@
                                     <div class="form-group">
                                         <strong>Name:</strong>
                                         <input type="text" name="name" class="form-control" placeholder="Name"
-                                            value="{{ old('name') }}">
+                                            value="{{ old('name') }}" style="margin: 0px">
                                         @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                         @endif
@@ -37,7 +37,7 @@
                                     <div class="form-group">
                                         <strong>Email:</strong>
                                         <input type="text" name="email" class="form-control" placeholder="Email"
-                                            value="{{ old('email') }}">
+                                            value="{{ old('email') }} " style="margin: 0px">
                                         @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                         @endif
@@ -49,7 +49,7 @@
                                     <div class="form-group">
                                         <strong>Phone:</strong>
                                         <input type="text" name="phone" class="form-control" placeholder="Phone"
-                                            value="{{ old('phone') }}">
+                                            value="{{ old('phone') }}" style="margin: 0px">
                                         @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                         @endif
@@ -59,7 +59,7 @@
                                     <div class="form-group">
                                         <strong>Subject:</strong>
                                         <input type="text" name="subject" class="form-control" placeholder="Subject"
-                                            value="{{ old('subject') }}">
+                                            value="{{ old('subject') }}" style="margin: 0px">
                                         @if ($errors->has('subject'))
                                         <span class="text-danger">{{ $errors->first('subject') }}</span>
                                         @endif
@@ -70,8 +70,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <strong>Message:</strong>
-                                        <textarea name="message" rows="3"
-                                            class="form-control">{{ old('message') }}</textarea>
+                                        <textarea name="message" rows="3" class="form-control"
+                                            style="margin: 0px">{{ old('message') }}</textarea>
                                         @if ($errors->has('message'))
                                         <span class="text-danger">{{ $errors->first('message') }}</span>
                                         @endif

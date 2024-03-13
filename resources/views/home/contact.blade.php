@@ -96,6 +96,14 @@
             font-size: 12px;
             text-align: right;
         }
+
+        form input {
+            text-transform: none;
+        }
+
+        form textarea {
+            text-transform: none;
+        }
     </style>
 
 </head>

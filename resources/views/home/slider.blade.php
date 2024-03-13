@@ -96,13 +96,5 @@
         </div>
     </div>
 </section>
-<script>
-    $(document).ready(function(){
-       // Activate the carousel
-        $('#customCarousel1').carousel();
-        // Enable automatic sliding with a custom interval of 1 second
-        $('#customCarousel1').carousel({
-        interval: 1000 // Change slide every 1 second
-        });
-    });
-</script>
+
+   
