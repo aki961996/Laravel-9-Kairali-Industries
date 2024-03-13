@@ -1,8 +1,8 @@
 <header class="header_section">
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="{{url('/')}}"><img width="70" src="{{asset('admin/assets/images/7.jpg')}}"
-                    alt="#" /></a>
+            <a class="navbar-brand" href="{{url('#')}}"><img width="230"
+                    src="{{asset('admin/assets/images/10890.jpg')}}" alt="#" /></a>
             {{-- <a class="navbar-brand" href="{{url('/')}}">Logo</a> --}}
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

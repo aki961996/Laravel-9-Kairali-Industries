@@ -63,10 +63,10 @@ class HomeController extends Controller
             return view('admin.home', ['total_products' => $total_products, 'total_orders' => $total_orders, 'total_users' => $total_users, 'total_revenue' => $total_revenue, 'total_deliverd' => $total_delivered, 'total_processing' => $total_processing]);
         } else {
             $product = Product::orderBy('id', 'asc')->paginate(6);
-            $comments = Comment::orderBy('created_at', 'desc')->get();
-            $reply = Reply::orderBy('created_at', 'desc')->get();
+            // $comments = Comment::orderBy('created_at', 'desc')->get();
+            // $reply = Reply::orderBy('created_at', 'desc')->get();
 
-            return view('home.userpage', ['product' => $product, 'comment' => $comments, 'reply' => $reply]);
+            return view('home.userpage', ['product' => $product]);
         }
     }
 
