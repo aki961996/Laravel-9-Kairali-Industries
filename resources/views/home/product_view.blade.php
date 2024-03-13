@@ -12,6 +12,15 @@
             </div>
             {{-- end searching products --}}
         </div>
+        {{-- msg --}}
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+            {{session()->get('message')}}
+        </div>
+        @endif
+
+        {{-- end msg --}}
         <div class="row">
             @foreach ($product as $products)
             <div class="col-sm-6 col-md-4 col-lg-4">

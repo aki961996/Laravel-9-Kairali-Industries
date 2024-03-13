@@ -6,7 +6,7 @@
     <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="container ">
+                <div class="container">
                     <div class="row">
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
@@ -38,17 +38,16 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                    <span>
-                                        Sale 20% Off
+                                    <span style="color: white">
+                                        Improve your well-being in the company
                                     </span>
                                     <br>
-                                    On Everything
+
                                 </h1>
                                 <p style="color: white">
-                                    Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam
-                                    fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat
-                                    molestias, veniam, vel architecto veritatis delectus repellat modi impedit
-                                    sequi.
+                                    Office work often leads to discomfort and muscle tightness. With these couple of
+                                    exercises, we help to alleviating the
+                                    pain associated with desk jobs.
                                 </p>
                                 <div class="btn-box">
                                     <a href="" class="btn1">
@@ -70,7 +69,7 @@
                                         Improve your well-being in the office
                                     </span>
                                     <br>
-                                    On Everything
+
                                 </h1>
                                 <p style="color: white">
                                     Office work often leads to discomfort and muscle tightness. With these couple of
@@ -97,3 +96,13 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function(){
+       // Activate the carousel
+        $('#customCarousel1').carousel();
+        // Enable automatic sliding with a custom interval of 1 second
+        $('#customCarousel1').carousel({
+        interval: 1000 // Change slide every 1 second
+        });
+    });
+</script>

@@ -116,10 +116,12 @@ class HomeController extends Controller
                     $cart->quantity = $request->quantity ?? 1;
 
                     $cart->save();
+                    return redirect()->back()->with('message', 'Product Added Successfully');
                 }
             }
-            return redirect()->route('show_cart')->with('message', 'Cart Added Successfully');
+            // return redirect()->route('show_cart')->with('message', 'Cart Added Successfully');
             // return redirect()->back();
+            return redirect()->back()->with('message', 'Product Added Successfully');
         } else {
             return redirect('login');
         }
