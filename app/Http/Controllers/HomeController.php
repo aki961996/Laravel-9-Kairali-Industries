@@ -26,6 +26,7 @@ use Stripe\StripeClient;
 use Stripe\Checkout\Session;
 use Stripe\PaymentIntent;
 use Svg\Tag\Rect;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -116,7 +117,9 @@ class HomeController extends Controller
                     $cart->quantity = $request->quantity ?? 1;
 
                     $cart->save();
-                    return redirect()->back()->with('message', 'Product Added Successfully');
+                    Alert::success('Product Added Successfully', 'We have addedd product to the cart');
+                    return redirect()->back();
+                    // return redirect()->back()->with('message', 'Product Added Successfully');
                 }
             }
             // return redirect()->route('show_cart')->with('message', 'Cart Added Successfully');
