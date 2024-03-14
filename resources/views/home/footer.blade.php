@@ -72,7 +72,7 @@
 
 <div class="cpy_">
     <p class="mx-auto">&copy;
-        <?php echo date("Y"); ?> All Rights Reserved By <a href="">Kairali industries</a><br>
+        <?php echo date("Y"); ?> All Rights Reserved By <a href="#">Kairali industries</a><br>
 
         Distributed By <a href="" target="_blank">Tech &hearts;</a>
 

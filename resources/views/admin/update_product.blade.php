@@ -3,9 +3,10 @@
 
 <head>
     <!-- Required meta tags -->
-    <base href="/public">
+   
 
     @include('admin.css')
+
     <style type="text/css">
         .div_center {
             text-align: center;

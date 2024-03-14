@@ -91,8 +91,6 @@
                     </div>
                 </form>
 
-
-
             </div>
         </div>
     </div>
@@ -103,10 +101,9 @@
     <!-- footer start -->
     {{-- @include('home.footer') --}}
     <div class="cpy_">
-        <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
-
-            Distributed By <a href="" target="_blank">Aki</a>
-
+        <p class="mx-auto">&copy;
+            <?php echo date("Y"); ?> All Rights Reserved By <a href="#">Kairali industries</a><br>
+            Distributed By <a href="#" target="_blank">Aki</a>
         </p>
     </div>
     <!-- footer end -->
