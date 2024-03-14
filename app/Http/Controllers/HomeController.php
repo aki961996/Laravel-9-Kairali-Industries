@@ -370,7 +370,9 @@ class HomeController extends Controller
             $contact->message = $request->message;
             $contact->user_id = Auth::user()->id;
             $contact->save();
-            return redirect()->back()->with('success', 'Thanks for contacting us. We will connect you!!!');
+            Alert::success('Hey User', 'Thanks for contacting us. We will connect you!');
+            // return redirect()->back()->with('success', 'Thanks for contacting us. We will connect you!!!');
+            return redirect()->back();
         } else {
 
             $contact->name = $request->name;
@@ -380,7 +382,8 @@ class HomeController extends Controller
             $contact->message = $request->message;
             $contact->user_id = "Not Logged";
             $contact->save();
-            return redirect()->back()->with('success', 'We will connect you!!!');
+            Alert::success('Hey User', 'We will connect you!');
+            return redirect()->back();
         }
     }
 }
