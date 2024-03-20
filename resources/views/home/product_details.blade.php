@@ -30,6 +30,13 @@
 
 <body>
     <div class="hero_area">
+
+        {{-- sweet alert --}}
+        @include('sweetalert::alert')
+        {{-- sweet alert --}}
+
+
+
         <!-- header section strats -->
         @include('home.header')
         <!-- end header section -->

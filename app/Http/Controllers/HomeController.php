@@ -83,48 +83,58 @@ class HomeController extends Controller
     // add_cart
     public function add_cart(Request $request, $id)
     {
-        // dd(Auth::id());  right now null ann vara the go to else part
-        $id = decrypt($id);
-        if (Auth::check()) {
+
+        if (Auth::id()) {
             $user = Auth::user();
+
+            $userId = $user->id;
+
+            $id = decrypt($id);
+
             $product = Product::find($id);
 
-            if ($product) {
-                $cart_existing = Cart::where('user_id', $user->id)
-                    ->where('product_id', $product->id)
-                    ->first();
 
-                if ($cart_existing) {
-                    $newQuantity = $cart_existing->quantity + $request->quantity;
-                    $cart_existing->update(['quantity' => $newQuantity]);
+
+            $product_exiting_id_cart_table = Cart::where('product_id', '=', $product->id)->where('user_id', '=', $userId)->get('id')->first();
+
+
+            if ($product_exiting_id_cart_table) {
+                $cart = Cart::find($product_exiting_id_cart_table)->first();
+                $quantity = $cart->quantity;
+                $cart->quantity = $quantity + $request->quantity;
+
+                if ($product->discount_price != null) {
+                    $cart->price = $product->discount_price * $cart->quantity;
                 } else {
-                    $cart = new Cart();
-                    $cart->user_id = $user->id;
-                    $cart->name = $user->name;
-                    $cart->email = $user->email;
-                    $cart->phone = $user->phone;
-                    $cart->address = $user->address;
-
-                    $cart->product_title = $product->title;
-
-                    // Use the null coalescing operator to simplify the price assignment
-                    $cart->price = $product->discount_price ?? $product->price;
-                    $cart->quantity = $product->quantity;
-                    $cart->image = $product->image;
-                    $cart->product_id = $product->id;
-
-                    // You might want to use the request data instead of hardcoded quantity
-                    $cart->quantity = $request->quantity ?? 1;
-
-                    $cart->save();
-                    Alert::success('Product Added Successfully', 'We have addedd product to the cart');
-                    return redirect()->back();
-                    // return redirect()->back()->with('message', 'Product Added Successfully');
+                    $cart->price = $product->price * $cart->quantity;
                 }
+                $cart->save();
+                Alert::success('Product Added Successfully', 'We have addedd product to the cart');
+                return redirect()->back();
+            } else {
+                $cart = new Cart();
+                $cart->user_id = $user->id;
+                $cart->name = $user->name;
+                $cart->email = $user->email;
+                $cart->phone = $user->phone;
+                $cart->address = $user->address;
+
+                $cart->product_title = $product->title;
+
+                // Use the null coalescing operator to simplify the price assignment
+                $cart->price = $product->discount_price ?? $product->price;
+                $cart->quantity = $product->quantity;
+                $cart->image = $product->image;
+                $cart->product_id = $product->id;
+
+                // You might want to use the request data instead of hardcoded quantity
+                $cart->quantity = $request->quantity ?? 1;
+                $cart->save();
+                Alert::success('Product Added Successfully', 'We have addedd product to the cart');
+                return redirect()->back();
+                // return redirect()->back()->with('message', 'Product Added Successfully');
+
             }
-            // return redirect()->route('show_cart')->with('message', 'Cart Added Successfully');
-            // return redirect()->back();
-            return redirect()->back()->with('message', 'Product Added Successfully');
         } else {
             return redirect('login');
         }
@@ -133,7 +143,6 @@ class HomeController extends Controller
     //show_cart
     public function show_cart()
     {
-
         // HOME PAGE CART CLICK AKUBHOL ID ELLACHAL RETURN TO LOGIN
         if (Auth::id()) {
             $id = Auth::user()->id;
@@ -156,7 +165,9 @@ class HomeController extends Controller
         $decryptedId = decrypt($id);
         $cart_remove = Cart::find($decryptedId);
         $cart_remove->delete();
-        return redirect()->back()->with('message', 'Cart Removed Successfully');
+        //return redirect()->back()->with('message', 'Cart Removed Successfully');
+        Alert::info('Cart Removed Successfully');
+        return redirect()->back();
     }
 
     //cash_order  cashondelivary
