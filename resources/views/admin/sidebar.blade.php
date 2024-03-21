@@ -114,5 +114,17 @@
         </li>
         {{-- This is category tab end --}}
 
+
+        {{-- This is users tab --}}
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('view_users')}}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-account"></i> <!-- Icon class for users -->
+                </span>
+                <span class="menu-title">Users</span>
+            </a>
+        </li>
+        {{-- This is users tab end --}}
+
     </ul>
 </nav>

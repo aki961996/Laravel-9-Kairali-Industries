@@ -58,11 +58,11 @@
                 </div>
                 @endif
                 {{-- flashing end --}}
-                <h1 class="title_des">All Orders</h1>
+                <h1 class="title_des">All Users</h1>
 
                 {{-- search start --}}
                 <div style="padding-left:400px; padding-bottom:30px">
-                    <form action="{{route('search')}}" method="GET">
+                    <form action="{{route('search_users')}}" method="GET">
                         @csrf
                         <input type="text" class="text_color" name="search" placeholder="Search For Something">
 
@@ -84,53 +84,25 @@
                             <th class="th_des">Email</th>
                             <th class="th_des">Address</th>
                             <th class="th_des">Phone</th>
-                            <th class="th_des">Product Title</th>
-                            <th class="th_des">Quantity</th>
-                            <th class="th_des">Price</th>
-                            <th class="th_des">Total Price</th>
-                            <th class="th_des">Payment Status</th>
-                            <th class="th_des">Delivery Status</th>
-                            <th class="th_des">Image</th>
-                            <th class="th_des">Delivered</th>
-                            <th class="th_des">Print Pdf</th>
-                            <th class="th_des">Send Email</th>
+                            <th class="th_des">Edit</th>
+
+
 
                         </tr>
-                        @forelse($order as $orders)
+                        @forelse($users as $user)
                         <tr>
-                            <td>{{$orders->name}}</td>
-                            <td>{{$orders->email}}</td>
-                            <td>{{$orders->address}}</td>
-                            <td>{{$orders->phone}}</td>
-                            <td>{{$orders->product_title}}</td>
-                            <td>{{$orders->quantity}}</td>
-                            <td>&#8377;{{$orders->price}}</td>
-                            <td>&#8377;{{ $orders->price * $orders->quantity }}</td>
-                            <td>{{$orders->payment_status}}</td>
-                            <td>{{$orders->delivary_status}}</td>
-                            <td>
-                                <img class="img_size" src="{{ asset('storage/product/' . $orders->image) }}"
-                                    alt="orderImage" />
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->address}}</td>
+                            <td>{{$user->phone}}</td>
 
-                            </td>
+
+
                             <td>
-                                @if($orders->delivary_status == 'processing')
-                                <a href="{{ route('delivered', encrypt($orders->id)) }}"
-                                    onclick="return confirm('Are you sure this product delivered!!!!')"
-                                    class="btn btn-primary small">Delivered</a>
-                                @else
-                                <p style="color: green">Product is Delivered</p>
-                                @endif
+                                <a href="" class="btn btn-secondary sm">Edit</a>
                             </td>
-                            <td>
-                                <a href="{{route('print_pdf', encrypt($orders->id))}}" class="btn btn-info sm">Print
-                                    Pdf</a>
-                            </td>
-                            <td>
-                                <a href="{{route('send_email', encrypt($orders->id))}}"
-                                    class="btn btn-secondary sm">Send
-                                    Email</a>
-                            </td>
+
+
 
                         </tr>
                         @empty
@@ -148,7 +120,7 @@
                 {{-- pagination --}}
                 <div style="padding: 10px; float:right;">
                     {!!
-                    $order->appends(\Illuminate\Support\Facades\Request::except('page'))->links()
+                    $users->appends(\Illuminate\Support\Facades\Request::except('page'))->links()
                     !!}
                 </div>
             </div>

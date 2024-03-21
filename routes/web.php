@@ -66,6 +66,13 @@ Route::post('/update_product_confirm/{id}', [AdminController::class, 'update_pro
 //admin order
 Route::get('/view_order', [AdminController::class, 'view_order'])->name('view_order');
 
+//admin users api
+//view_users
+Route::get('/view_users', [AdminController::class, 'view_users'])->name('view_users');
+
+ Route::get('/search_users', [AdminController::class, 'search_users'])->name('search_users');
+
+
 //home apis
 Route::get('/product_detail/{id}', [HomeController::class, 'product_detail'])->name('product_detail');
 

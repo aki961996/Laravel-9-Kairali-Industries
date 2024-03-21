@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use App\Notifications\SendEmailNotification;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
@@ -340,6 +341,42 @@ class AdminController extends Controller
                 ->orWhere('product_title', 'like', '%' . $searchText . '%')
                 ->paginate();
             return view('admin.order', ['order' => $order]);
+        } else {
+            return redirect('login');
+        }
+    }
+
+    //view_users view all users by admin
+    public function view_users(Request $request)
+    {
+        if (Auth::id()) {
+            $users = User::orderBy('id', 'desc')->paginate(10);
+            return view('admin.users', ['users' => $users]);
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function search_users(Request $request)
+    {
+
+        if (Auth::id()) {
+            //validation
+            // $validator = Validator::make($request->all(), [
+            //     'search' => 'required',
+
+            // ]);
+            // $validated = $validator->validated();
+            // $validated = $validator->safe()->only(['search']);
+            //validation
+
+            $searchText = $request->search;  //This search is name in input field
+            $users = User::where('name', 'like', '%' . $searchText . '%')
+                ->orWhere('phone', 'like', '%' . $searchText . '%')
+                ->orWhere('email', 'like', '%' . $searchText . '%')
+
+                ->paginate();
+            return view('admin.users', ['users' => $users]);
         } else {
             return redirect('login');
         }
