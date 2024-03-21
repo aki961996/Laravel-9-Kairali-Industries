@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Validator;
 use PDF;
 use Psy\CodeCleaner\ReturnTypePass;
 use Svg\Tag\Rect;
-
 use function PHPSTORM_META\elementType;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -161,7 +161,9 @@ class AdminController extends Controller
             }
             // end method
             $products->save();
-            return redirect()->back()->with('message', 'Product Addedd Successfully');
+            // return redirect()->back()->with('message', 'Product Addedd Successfully');
+            Alert::success('message', 'Product Addedd Successfully');
+            return redirect()->back();
         } else {
             return redirect('login');
         }

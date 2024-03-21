@@ -32,6 +32,9 @@
 
 <body>
     <div class="container-scroller">
+
+        @include('sweetalert::alert')
+
         @include('admin.sidebar')
         @include('admin.header')
 
