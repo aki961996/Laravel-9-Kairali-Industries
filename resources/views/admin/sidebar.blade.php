@@ -73,6 +73,18 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+
+
+        {{-- This is users tab --}}
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('view_users')}}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-account"></i> <!-- Icon class for users -->
+                </span>
+                <span class="menu-title">Users</span>
+            </a>
+        </li>
+        {{-- This is users tab end --}}
         {{-- products tab --}}
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -115,16 +127,6 @@
         {{-- This is category tab end --}}
 
 
-        {{-- This is users tab --}}
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('view_users')}}">
-                <span class="menu-icon">
-                    <i class="mdi mdi-account"></i> <!-- Icon class for users -->
-                </span>
-                <span class="menu-title">Users</span>
-            </a>
-        </li>
-        {{-- This is users tab end --}}
 
     </ul>
 </nav>
