@@ -397,4 +397,6 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+
+
 }
